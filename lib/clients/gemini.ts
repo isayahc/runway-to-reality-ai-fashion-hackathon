@@ -18,7 +18,7 @@ async function request(model: string, contents: unknown[], responseModalities?: 
 }
 
 export async function understand(asset: MediaAsset, intent: string) {
-  const result = await request(process.env.GEMINI_MODEL ?? "gemini-2.0-flash", [{ parts: [await sourcePart(asset), { text: `Describe this fashion reference for wearable object design. Return concise JSON with visualSummary, materials, colors, silhouette, and suggestedBodyRegions. Creative intent: ${intent}` }] }]);
+  const result = await request(process.env.GEMINI_MODEL ?? "gemini-3.6-flash", [{ parts: [await sourcePart(asset), { text: `Describe this fashion reference for wearable object design. Return concise JSON with visualSummary, materials, colors, silhouette, and suggestedBodyRegions. Creative intent: ${intent}` }] }]);
   return result.candidates?.[0]?.content?.parts?.find(part => part.text)?.text ?? "No visual description returned.";
 }
 
@@ -31,7 +31,7 @@ export async function generatePrimitives(asset: MediaAsset, intent: string, prim
 export interface CadGenerationResult { id: string; scad: string; dimensions: Record<string, number>; material: string; fabricationNotes: string; }
 
 export async function generateCad(asset: MediaAsset, intent: string): Promise<CadGenerationResult> {
-  const result = await request(process.env.GEMINI_CAD_MODEL ?? process.env.GEMINI_MODEL ?? "gemini-2.0-flash", [{ parts: [await sourcePart(asset), { text: `Analyze this wearable reference and return JSON only with this shape: {"scad":"...","dimensions":{"width_mm":0,"height_mm":0,"depth_mm":0},"material":"...","fabricationNotes":"..."}. Generate simple safe OpenSCAD for a wearable enclosure or fashion module. Use only primitive geometry, module, union, difference, translate, rotate, cube, cylinder, sphere, and color. No import, include, surface, file access, or arbitrary code. Intent: ${intent}` }] }]);
+  const result = await request(process.env.GEMINI_CAD_MODEL ?? process.env.GEMINI_MODEL ?? "gemini-3.6-flash", [{ parts: [await sourcePart(asset), { text: `Analyze this wearable reference and return JSON only with this shape: {"scad":"...","dimensions":{"width_mm":0,"height_mm":0,"depth_mm":0},"material":"...","fabricationNotes":"..."}. Generate simple safe OpenSCAD for a wearable enclosure or fashion module. Use only primitive geometry, module, union, difference, translate, rotate, cube, cylinder, sphere, and color. No import, include, surface, file access, or arbitrary code. Intent: ${intent}` }] }]);
   const text = result.candidates?.[0]?.content?.parts?.find(part => part.text)?.text?.replace(/^```json\s*|\s*```$/g, "").trim();
   if (!text) throw new Error("Gemini returned no CAD definition.");
   const parsed = JSON.parse(text) as Omit<CadGenerationResult, "id">;
