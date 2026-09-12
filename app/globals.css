@@ -5,3 +5,4 @@
  .primitive-image{width:42px;height:30px;object-fit:cover}.primitive{min-height:66px}
  .sample-list{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:15px}.sample-list>small{margin-right:5px}.sample-list button{margin:0;padding:7px 9px;background:transparent;color:var(--ink);border:1px solid var(--line);font-size:9px}
  .download-link{display:block;margin-top:14px;color:var(--violet);font:10px 'DM Mono';letter-spacing:.06em;text-decoration:none}
+ .cad-viewport{height:280px;width:100%;overflow:hidden}.cad-viewport canvas{display:block;width:100%;height:100%}
