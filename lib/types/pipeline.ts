@@ -6,5 +6,6 @@ export interface CapturedFrame { id: string; assetId: string; timestampMs: numbe
 export interface WearablePrimitive { id: string; name: string; category: "garment" | "accessory" | "material"; description: string; confidence: number; sourceFrameId?: string; imageUrl: string; targetBodyRegion: string; fabricationNotes: string; electronicsRequired: boolean; attributes: Record<string, string>; }
 export interface PrimitiveGenerationRequest { mediaAssetId: string; frameIds?: string[]; intent: string; model?: string; }
 export interface FormaGenerationRequest { primitives: WearablePrimitive[]; intent: string; target: "mesh" | "preview" | "both"; }
-export interface FormaGenerationResult { id: string; status: PipelineStatus; previewUrl?: string; meshUrl?: string; warnings: string[]; metadata?: unknown; }
+export interface FormaArtifact { filename: string; mimeType: string; sizeBytes?: number; downloadUrl: string; }
+export interface FormaGenerationResult { id: string; status: PipelineStatus; previewUrl?: string; meshUrl?: string; stepArtifact?: FormaArtifact; warnings: string[]; metadata?: unknown; }
 export interface PipelineRun { id: string; status: PipelineStatus; asset?: MediaAsset; frames: CapturedFrame[]; primitives: WearablePrimitive[]; forma?: FormaGenerationResult; startedAt: string; updatedAt: string; }
