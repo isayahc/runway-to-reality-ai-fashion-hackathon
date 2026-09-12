@@ -1,0 +1,30 @@
+:root{
+/* --- Brand base --- */
+--orange-100:#FFE9DF;--orange-200:#FFCDB6;--orange-300:#FFA87F;--orange-400:#FF8A4C;--orange-500:#F4562A;--orange-600:#DC431A;
+--yellow-300:#FFE071;--yellow-400:#FFC93C;--yellow-500:#F7C21B;
+--mint-100:#EAF8F6;--mint-200:#D6F0EC;--mint-300:#A9D9D2;--mint-400:#7FC3BA;
+--peach-100:#FDF2EA;--peach-200:#FDE3D2;
+/* --- Ink / neutrals --- */
+--ink-900:#2C363F;--ink-700:#3D4A54;--ink-500:#63707B;--ink-400:#7A8894;--ink-300:#A7B2BC;--ink-200:#D9E0E6;--ink-100:#EDF1F4;
+--white:#FFFFFF;--page:#F8F9FB;
+/* --- Service tile gradients (six-up "What we do here" grid) --- */
+--tile-1a:#29B6F6;--tile-1b:#2D7BF6;
+--tile-2a:#25D8C4;--tile-2b:#22A6E8;
+--tile-3a:#7BE39A;--tile-3b:#3FC98C;
+--tile-4a:#B23BF0;--tile-4b:#E93BC2;
+--tile-5a:#FF7A3D;--tile-5b:#F03B2D;
+--tile-6a:#FFB27A;--tile-6b:#FF8A4C;
+
+/* --- Semantic aliases --- */
+--text-display:var(--ink-700);--text-heading:var(--ink-700);--text-body:var(--ink-400);--text-muted:var(--ink-300);
+--text-eyebrow:var(--orange-500);--text-on-accent:var(--white);
+--link:var(--orange-500);--link-hover:var(--orange-600);
+--surface-page:var(--page);--surface-card:var(--white);--surface-mint:var(--mint-100);--surface-peach:var(--peach-100);
+--accent:var(--orange-500);--accent-hover:var(--orange-600);--accent-soft:var(--orange-100);
+--highlight:var(--yellow-400);
+--border-hairline:var(--ink-100);--border-input:var(--ink-200);
+--focus-ring:rgba(244,86,42,.35);
+--gradient-accent:linear-gradient(135deg,var(--orange-400) 0%,var(--orange-500) 100%);
+--gradient-accent-hover:linear-gradient(135deg,#FF7A3B 0%,var(--orange-600) 100%);
+--blob-peach:#FDE3D2;--blob-gray:#E6ECEF;--blob-mint:#CFE8E3;--blob-cream:#FBF3E9;
+}

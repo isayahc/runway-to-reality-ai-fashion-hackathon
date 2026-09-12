@@ -1,0 +1,25 @@
+:root{
+--font-display:"Bakbak One","Poppins",system-ui,sans-serif;
+--font-sans:"Poppins",system-ui,-apple-system,sans-serif;
+--font-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+
+--text-hero:88px;--text-hero-sub:34px;
+--text-h1:40px;--text-h2:32px;--text-h3:22px;--text-h4:17px;
+--text-body-lg:16px;--text-body:15px;--text-sm:13px;--text-xs:11px;
+
+--leading-tight:1.0;--leading-snug:1.25;--leading-normal:1.5;--leading-relaxed:1.75;
+--weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+--tracking-display:-.01em;--tracking-normal:0;--tracking-wide:.06em;--tracking-eyebrow:.14em;
+
+/* semantic */
+--type-hero:var(--weight-regular) var(--text-hero)/var(--leading-tight) var(--font-display);
+--type-hero-sub:var(--weight-regular) var(--text-hero-sub)/1.15 var(--font-display);
+--type-h1:var(--weight-semibold) var(--text-h1)/var(--leading-snug) var(--font-sans);
+--type-h2:var(--weight-semibold) var(--text-h2)/var(--leading-snug) var(--font-sans);
+--type-h3:var(--weight-semibold) var(--text-h3)/1.35 var(--font-sans);
+--type-body:var(--weight-regular) var(--text-body)/var(--leading-relaxed) var(--font-sans);
+--type-sm:var(--weight-regular) var(--text-sm)/var(--leading-relaxed) var(--font-sans);
+--type-button:var(--weight-semibold) var(--text-sm)/1 var(--font-sans);
+--type-nav:var(--weight-medium) 14px/1 var(--font-sans);
+--type-eyebrow:var(--weight-semibold) var(--text-sm)/1.2 var(--font-sans);
+}

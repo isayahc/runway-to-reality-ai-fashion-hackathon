@@ -1,0 +1,31 @@
+:root{
+/* radii */
+--radius-xs:6px;--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;--radius-2xl:40px;--radius-pill:999px;
+--radius-media:24px;--radius-media-accent:140px; /* the one oversized corner on framed photography */
+
+/* shadows */
+--shadow-xs:0 2px 6px rgba(44,54,63,.06);
+--shadow-sm:0 6px 16px rgba(44,54,63,.07);
+--shadow-card:0 24px 60px rgba(58,74,90,.10);
+--shadow-card-hover:0 32px 72px rgba(58,74,90,.14);
+--shadow-media:0 30px 70px rgba(58,74,90,.18);
+--shadow-tile:0 10px 22px rgba(44,54,63,.12);
+--glow-accent:0 10px 24px rgba(244,86,42,.35);
+--glow-accent-hover:0 14px 30px rgba(244,86,42,.45);
+--inset-hairline:inset 0 0 0 1px var(--border-hairline);
+
+/* motion */
+--ease-out:cubic-bezier(.22,.61,.36,1); /* @kind other */
+--ease-in-out:cubic-bezier(.45,.05,.55,.95); /* @kind other */
+--dur-fast:140ms; /* @kind other */
+--dur-base:220ms; /* @kind other */
+--dur-slow:420ms; /* @kind other */
+--transition-base:all var(--dur-base) var(--ease-out);
+
+/* blur / transparency */
+--blur-nav:saturate(140%) blur(14px); /* @kind other */
+--scrim-white:rgba(255,255,255,.82);
+--opacity-hover:.7; /* @kind other */
+--opacity-disabled:.4; /* @kind other */
+--press-scale:.97; /* @kind other */
+}
