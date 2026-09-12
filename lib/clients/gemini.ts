@@ -13,7 +13,7 @@ async function sourcePart(asset: MediaAsset) {
 async function request(model: string, contents: unknown[], responseModalities?: string[]) {
   if (!key()) throw new Error("GEMINI_API_KEY is not configured on the server.");
   const response = await fetch(`${endpoint}/${model}:generateContent?key=${encodeURIComponent(key()!)}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents, ...(responseModalities ? { generationConfig: { responseModalities } } : {}) }) });
-  if (!response.ok) throw new Error(`Gemini request failed (${response.status}). Check GEMINI_API_KEY and model configuration.`);
+  if (!response.ok) { const detail = await response.text(); throw new Error(`Gemini request failed (${response.status}): ${detail.slice(0, 500)}`); }
   return response.json() as Promise<{ candidates?: Array<{ content?: { parts?: Array<{ text?: string; inline_data?: { mime_type: string; data: string } }> } }> }>;
 }
 
