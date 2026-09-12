@@ -7,3 +7,5 @@ public/uploads/
 dist/
 build/
 coverage/
+*.tsbuildinfo
+runway-keys/
