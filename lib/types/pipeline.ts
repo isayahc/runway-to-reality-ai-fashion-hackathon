@@ -1,7 +1,7 @@
 export type MediaKind = "image" | "video";
 export type PipelineStatus = "idle" | "queued" | "processing" | "complete" | "failed";
 
-export interface MediaAsset { id: string; kind: MediaKind; name: string; url: string; mimeType: string; durationMs?: number; createdAt: string; }
+export interface MediaAsset { id: string; kind: MediaKind; name: string; url: string; thumbnailUrl?: string; mimeType: string; sizeBytes: number; width?: number; height?: number; durationMs?: number; createdAt: string; }
 export interface CapturedFrame { id: string; assetId: string; timestampMs: number; url: string; width: number; height: number; }
 export interface WearablePrimitive { id: string; name: string; category: "garment" | "accessory" | "material"; description: string; confidence: number; sourceFrameId?: string; attributes: Record<string, string>; }
 export interface PrimitiveGenerationRequest { mediaAssetId: string; frameIds?: string[]; intent: string; model?: string; }

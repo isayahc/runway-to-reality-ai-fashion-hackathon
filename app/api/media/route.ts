@@ -1,7 +1,22 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
 import type { MediaAsset } from "@/lib/types/pipeline";
+import { readAssets, saveAsset, saveThumbnail } from "@/lib/media/storage";
 
-export async function POST() {
-  const asset: MediaAsset = { id: "asset-demo", kind: "image", name: "runway-reference.jpg", url: "/placeholder-reference.jpg", mimeType: "image/jpeg", createdAt: new Date().toISOString() };
+const allowed = new Set(["image/png", "image/jpeg", "image/webp", "video/mp4"]);
+
+export async function GET() { return NextResponse.json({ assets: await readAssets() }); }
+
+export async function POST(request: Request) {
+  const form = await request.formData();
+  const file = form.get("file");
+  if (!(file instanceof File) || !allowed.has(file.type)) return NextResponse.json({ error: "Upload a PNG, JPG, WebP, or MP4 file." }, { status: 400 });
+  if (file.size > 50 * 1024 * 1024) return NextResponse.json({ error: "File must be 50MB or smaller." }, { status: 413 });
+  const id = randomUUID();
+  const name = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+  const kind = file.type.startsWith("video/") ? "video" : "image";
+  const asset: MediaAsset = { id, kind, name, url: `/uploads/${id}-${name}`, thumbnailUrl: kind === "video" ? `/uploads/${id}-thumbnail.svg` : undefined, mimeType: file.type, sizeBytes: file.size, createdAt: new Date().toISOString() };
+  await saveAsset(asset, Buffer.from(await file.arrayBuffer()));
+  if (kind === "video") await saveThumbnail(id, Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="100%" height="100%" fill="#20202b"/><text x="50%" y="50%" fill="#ff573f" text-anchor="middle" font-family="monospace" font-size="18">VIDEO FRAME / ${name}</text></svg>`));
   return NextResponse.json({ asset }, { status: 201 });
 }

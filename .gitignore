@@ -3,6 +3,7 @@
 !.env.example
 node_modules/
 .next/
+public/uploads/
 dist/
 build/
 coverage/
