@@ -43,6 +43,7 @@ export default function Workspace() {
   const [formaStatus, setFormaStatus] = useState("Awaiting input");
   const [formaBusy, setFormaBusy] = useState(false);
   const [formaResult, setFormaResult] = useState<string | null>(null);
+  const [meshResult, setMeshResult] = useState<string | null>(null);
   const [asset, setAsset] = useState<MediaAsset | null>(null);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
