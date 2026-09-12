@@ -1,0 +1,8 @@
+{
+  "license": "Original fixtures created for this repository; no third-party source material.",
+  "assets": [
+    { "id": "sample-orbit-jacket", "name": "Orbit jacket", "file": "/samples/orbit-jacket.svg", "mimeType": "image/svg+xml", "width": 640, "height": 800, "testCase": "structured garment and shoulder module" },
+    { "id": "sample-signal-collar", "name": "Signal collar", "file": "/samples/signal-collar.svg", "mimeType": "image/svg+xml", "width": 640, "height": 800, "testCase": "collar and reflective material" },
+    { "id": "sample-kinetic-cuff", "name": "Kinetic cuff", "file": "/samples/kinetic-cuff.svg", "mimeType": "image/svg+xml", "width": 640, "height": 800, "testCase": "wearable electronics enclosure" }
+  ]
+}
