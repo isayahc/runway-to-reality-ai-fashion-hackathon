@@ -27,3 +27,14 @@ export async function generatePrimitives(asset: MediaAsset, intent: string, prim
   const image = result.candidates?.[0]?.content?.parts?.find(part => part.inline_data)?.inline_data;
   return image ? `data:${image.mime_type};base64,${image.data}` : undefined;
 }
+
+export interface CadGenerationResult { id: string; scad: string; dimensions: Record<string, number>; material: string; fabricationNotes: string; }
+
+export async function generateCad(asset: MediaAsset, intent: string): Promise<CadGenerationResult> {
+  const result = await request(process.env.GEMINI_CAD_MODEL ?? process.env.GEMINI_MODEL ?? "gemini-2.0-flash", [{ parts: [await sourcePart(asset), { text: `Analyze this wearable reference and return JSON only with this shape: {"scad":"...","dimensions":{"width_mm":0,"height_mm":0,"depth_mm":0},"material":"...","fabricationNotes":"..."}. Generate simple safe OpenSCAD for a wearable enclosure or fashion module. Use only primitive geometry, module, union, difference, translate, rotate, cube, cylinder, sphere, and color. No import, include, surface, file access, or arbitrary code. Intent: ${intent}` }] }]);
+  const text = result.candidates?.[0]?.content?.parts?.find(part => part.text)?.text?.replace(/^```json\s*|\s*```$/g, "").trim();
+  if (!text) throw new Error("Gemini returned no CAD definition.");
+  const parsed = JSON.parse(text) as Omit<CadGenerationResult, "id">;
+  if (!parsed.scad || parsed.scad.length > 20000 || /\b(import|include|surface|system)\s*\(/i.test(parsed.scad)) throw new Error("Gemini returned invalid or unsafe OpenSCAD output.");
+  return { ...parsed, id: `cad-${Date.now()}` };
+}
