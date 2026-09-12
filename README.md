@@ -15,12 +15,58 @@ Build a fashion-focused application powered by:
 Possible ideas include virtual try-on rooms, personal stylists, live shopping
 streams, outfit rating bots, and Fashion Week lookbook tools.
 
-## Getting Started
+## Run Locally
 
-1. Create a free Google AI Studio account and get a Gemini API key.
-2. Create a free Vonage API account.
-3. Install Node.js LTS.
-4. Add your API keys to a local `.env` file.
+Requirements: Node.js LTS and Python 3.11+.
+
+1. Install JavaScript dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Create your local environment file:
+
+   ```bash
+   # macOS/Linux
+   cp .env.example .env.local
+
+   # Windows PowerShell
+   Copy-Item .env.example .env.local
+   ```
+
+3. Add `GEMINI_API_KEY` and your Vonage values to `.env.local`. Never commit
+   this file. Gemini handles visual understanding and primitive image
+   generation; Vonage handles live camera sessions.
+
+4. Start Forma locally for object generation. From a Forma-OSS checkout, run:
+
+   ```powershell
+   .\scripts\development\dev.ps1
+   ```
+
+   Keep `FORMA_MODE=local` and `FORMA_MCP_URL=http://127.0.0.1:8000/mcp` in
+   `.env.local`.
+
+5. Start the app:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000/workspace](http://localhost:3000/workspace).
+
+## Verify
+
+Run the production build before opening a pull request:
+
+```bash
+npm run build
+```
+
+Upload an image or MP4, enter creative intent, generate primitives, select a
+primitive, and send it to Forma. Camera and microphone access are required for
+live capture.
 
 ## Event Details
 
