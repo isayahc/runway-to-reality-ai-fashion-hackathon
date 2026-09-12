@@ -16,7 +16,7 @@ export default function Workspace() {
     setStatus("UPLOADING...");
     const form = new FormData(); form.append("file", file);
     const response = await fetch("/api/media", { method: "POST", body: form });
-    if (response.ok) { const result = await response.json(); setAsset(result.asset); setMeshUrl(result.asset.meshUrl ?? null); setStatus(result.asset.meshUrl ? "RENDERED" : "READY"); } else setStatus("UPLOAD FAILED");
+    if (response.ok) { const result = await response.json(); setAsset(result.asset); setMeshUrl(result.asset.meshUrl ?? (result.asset.kind === "cad" ? result.asset.url : null)); setStatus(result.asset.kind === "cad" ? "STEP READY" : "READY"); } else setStatus("UPLOAD FAILED");
   }
 
   async function generate() {
